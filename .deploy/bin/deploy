@@ -1,6 +1,9 @@
 #!/bin/bash
 
-echo DEPLOY_ENV=$DEPLOY_ENV
+if [[ -f /.dockerenv ]]; then sshpass -p $HOST_SSH_PASS ssh -o StrictHostKeyChecking=no ${HOST_SSH_USER}@host.docker.internal cd ${HOST_CURRENT_DIR}/app/projects/$(cd $(dirname $0)/../..;basename $(pwd)) \&\& 'bash' < $0; exit 0; fi
+
+uname
+pwd
 
 echo "Sending stdout and stderr for 15 seconds"
 
@@ -10,3 +13,5 @@ for i in {0..9} {0..5}; do
   echo "stderr: $msg" 1>&2
   sleep 1
 done
+
+exit
