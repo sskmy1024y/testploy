@@ -4,6 +4,8 @@ if [[ -f /.dockerenv ]]; then sshpass -p `/pploy-dist/environment.sh decrypt ${S
 
 uname
 pwd
+$DEPLOY_USER
+$DEPLOY_PASS
 
 echo "Sending stdout and stderr for 5 seconds"
 
